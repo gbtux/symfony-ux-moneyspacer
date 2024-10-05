@@ -8,6 +8,18 @@ Package Symfony UX qui permet d'ajouter des espaces comme séparateur de millier
 
 ## Installation
 
+Dans votre composer.json, ajouter ce repo comme source de dépendance tel que:
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/gbtux/symfony-ux-moneyspacer.git"
+    }
+]
+```
+
+Puis installer le package:
+
 ```
 composer require symfony/ux-moneyspacer:dev-main
 ```
