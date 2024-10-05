@@ -35,7 +35,7 @@ class AvenantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('montantTotalRAP', TextType::class, [
+            ->add('montantTotal', TextType::class, [
                 'label' => false,
                 'required' => false,
                 'spacer' => true
