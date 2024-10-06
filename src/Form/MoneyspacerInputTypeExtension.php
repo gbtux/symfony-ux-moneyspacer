@@ -21,7 +21,10 @@ class MoneyspacerInputTypeExtension extends AbstractTypeExtension
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['spacer' => false]);
+        $resolver->setDefaults([
+            'spacer' => false,
+            'spacer_unsigned' => false,
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -31,7 +34,7 @@ class MoneyspacerInputTypeExtension extends AbstractTypeExtension
 
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
-        if (!$options['spacer']) {
+        if (!$options['spacer'] && !$options['spacer_unsigned']) {
             $view->vars['uses_spacer'] = false;
 
             return;
@@ -41,6 +44,7 @@ class MoneyspacerInputTypeExtension extends AbstractTypeExtension
 
         $controllerName = 'symfony--ux-moneyspacer--spacer';
         $attr['data-controller'] = trim(($attr['data-controller'] ?? '').' '.$controllerName);
+        $attr['data-signed'] = $options['spacer_unsigned'] ? "unsigned" : "signed";
         $attr['data-symfony--ux-moneyspacer--spacer-target'] = 'input';
         $view->vars['uses_spacer'] = true;
         $view->vars['attr'] = $attr;
