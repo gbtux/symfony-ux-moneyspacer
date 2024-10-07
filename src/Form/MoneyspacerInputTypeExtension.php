@@ -29,7 +29,9 @@ class MoneyspacerInputTypeExtension extends AbstractTypeExtension
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new MoneyDataTransformer());
+        if ($options['spacer'] || $options['spacer_unsigned']) {
+            $builder->addModelTransformer(new MoneyDataTransformer());
+        }
     }
 
     public function finishView(FormView $view, FormInterface $form, array $options): void
